@@ -1,0 +1,25 @@
+int photoResistor = A5;
+int photoResistorPower = A0;
+
+
+void setup() {
+  // check pins are inputs or outputs
+  pinMode(photoResistor, INPUT);
+  pinMode(photoResistorPower, OUTPUT);
+
+  // Turn on power to the photoresistor
+  digitalWrite(photoResistorPower, HIGH);
+}
+
+void loop() {
+
+    int lightLevel = analogRead(photoResistor);  // reading the photo resistor value
+    int i = 1;    
+  
+     // classify whether the light is present or not 
+    if (lightLevel >= i ) Particle.publish("light", "present", PRIVATE);
+    if (lightLevel < i) Particle.publish("light", "absent", PRIVATE);
+
+    delay(10000);
+
+}  
